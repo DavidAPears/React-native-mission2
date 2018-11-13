@@ -652,6 +652,42 @@ else if (date == 23) {
      ) : null
    }
 
+   <View style={{paddingBottom: '10%', paddingLeft: 20, paddingRight: 20}}>
+   <TextInput
+ style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19}}
+ onChangeText={(searchedLocation) => {this.updateLocationState(searchedLocation)}}
+ value={this.state.searchedLocation} placeholder='Where? Place or postcode' placeholderTextColor='white'
+ underlineColorAndroid='transparent'
+/>
+
+   </View>
+
+   <View style={{width: '100%', height: '50%', justifyContent: 'center', alignItems: 'center', overflow: 'visible'}}>
+   <CircleSlider style={{}}
+ arcDirection={'CW'}
+       backgroundColor={"white"}
+       value={0}
+       btnRadius={9.2}
+       btnColor={'#24b599'}
+       sliderRadius={110}
+       sliderWidth={17.5}
+       startDegree={0}
+       maxValue={365}
+       onPressInnerCircle={(value) => console.log(`Inner: ${value}`)}
+       onPressOuterCircle={(value) => console.log(`Outer: ${value}`)}
+       onValueChange={val => this.setState({ dateSelected: val })}
+       onSlidingComplete={val => this.getVal(val)}
+       endGradient={"#A6FFCB"}
+       startGradient={"#12D8FA"}
+       showValue={'true'}
+       textColor={'black'}
+       textSize={20}
+/>
+<Text style={{fontSize: 25, fontWeight: 'normal', color: "white"}}>
+{`${this.convertSecondsToCalendarDate()}`}
+</Text>
+</View>
+
           <View style={styles.buttonContainer}>
           < BarIndicator count={7} size={60} color={'white'} style={{top: '-5%'}}/>
           </View>
@@ -674,6 +710,8 @@ else if (date == 23) {
                  <Text style={{color: 'white', padding: 5, fontSize: 20}}>'{this.state.searchedLocation}', {this.convertSecondsToCalendarDateForOutputText()}: '{this.state.weather.hourly.summary}'</Text>
                 </View>
             ) :
+
+
             <View style={styles.weatherItem}>
             <Image source={ this.getImage(this.state.icon) } style={{width: 130, height: 130}}/>
 
@@ -689,44 +727,49 @@ else if (date == 23) {
 
          <ScrollView>
 
+         // AVERAGE TEMPERATURE RESULT
          <View style={styles.weatherItem}>
-
          <Image source={ this.getImage(this.state.icon) } style={{width: 75, height: 75}}/>
-
          <Text style={styles.weatherItemText}> Average temp: { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C</Text>
-
          </View>
 
+        // CHANCE OF RAIN RESULT
          <View style={styles.weatherItem}>
          <Image source={require('./assets/icons/rain_chance.png')} style={{width: 75, height: 75}}/>
          <Text style={styles.weatherItemText}> Chance of rain: { Math.round(this.state.weather.daily.data[0].precipProbability * 100) }%</Text>
          </View>
 
+         // SUNRISE & SUNSET TIME
          <View style={styles.weatherItem}>
          <Image source={require('./assets/icons/sunset.png')} style={{width: 75, height: 75}}/>
          <Text style={styles.weatherItemText}>Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) } Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
          </View>
 
+         // MOON PHASE RESULT
          <View style={styles.weatherItem}>
          <Image source={ this.moonPhaseImage(this.convertMoonPhaseNumberToImageName(this.moonPhase())) } style={{width: 75, height: 75}}/>
          <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())} ({this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getDate()}/{this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getMonth()}/{this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getFullYear()})</Text>
          </View>
 
+         // TEMP HI & LO RESULT
          <View style={styles.weatherItem}>
          <Image source={require('./assets/icons/temperature.png')} style={{width: 75, height: 75}}/>
          <Text style={styles.weatherItemText}>Low: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureLow)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) }, High: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureHigh)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
          </View>
 
+         // HUMIDTY RESULT
          <View style={styles.weatherItem}>
          <Image source={require('./assets/icons/humidity.jpg')} style={{width: 75, height: 75}}/>
          <Text style={styles.weatherItemText}>Humidity: { this.state.weather.daily.data[0].humidity*100 }%</Text>
          </View>
 
+         // WIND SPEED RESULT
          <View style={styles.weatherItem}>
          <Image source={require('./assets/icons/wind-speed.png')} style={{width: 75, height: 75}}/>
          <Text style={styles.weatherItemText}>Wind speed: {this.state.weather.daily.data[0].windSpeed} mph</Text>
          </View>
 
+         // CLOUD COVER RESULT
          <View style={styles.lastWeatherItem}>
          <Image source={require('./assets/icons/clouds.png')} style={{width: 75, height: 75}}/>
          <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
@@ -739,6 +782,7 @@ else if (date == 23) {
        ) : <Text> </Text>
      }
 
+     // DARK SKY LOGO (PAGE FOOTER)
      <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
      <View style={{justifyContent: 'center'}}>
        <Image source={require('./assets/darksky.png')} style={{ height: 33.98509187, width: 150, marginLeft: 75 }}/>
@@ -855,7 +899,7 @@ else if (date == 23) {
 
       <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', padding: 20}}>James, Stephen and David have also created the sister app 'Weather2Wed'. You can usualy find them in an Edinburgh cafe, trying to figure out <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://www.reactnative.com')}>ReactNative</Text></Text>
 
-       <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20, paddingTop: 10, paddingRight: 20, paddingBottom: 10}}>Weather2Golf aims to help golfers assess the weather for trips to the course (any UK course). Powered by <Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://darksky.net/')}>Dark Sky</Text>, the app returns the typical weather (based on historical averages) for any given course. The app utilises <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://www.geograph.org.uk/')}>Geograph's API</Text> which means that any part of the UK can be entered as a search term (the fuzzy search can handle place names, postcodes, regions, sites of interest or even landmarks). Weather2Golf will also suggest nearby hotels in and around a course using the <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://developer.foursquare.com/places-api')}>FourSquare API</Text>. There is no commercial benefit to us, the creators; this information is provided as a free service. </Text>
+       <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20, paddingTop: 10, paddingRight: 20, paddingBottom: 10}}>Weather2Golf aims to help golfers assess the weather for trips to the course (any UK course). Powered by <Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://darksky.net/')}>Dark Sky</Text>, the app returns the typical weather (based on historical averages) for any given course. The app utilises <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://www.geograph.org.uk/')}>Geograph's API</Text> which means that any part of the UK can be entered as a search term (the fuzzy search can handle place names, postcodes, regions, sites of interest or even landmarks). Weather2Golf will also suggest nearby hotels in and around a course using the <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://developer.foursquare.com/places-api')}>FourSquare API</Text>. NB. There is no commercial benefit to us, the creators; this information is provided as a free service. </Text>
 
        <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20}}>Weather2Golf</Text>
        <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingBottom: 20, paddingLeft: 20}}>November 2018</Text>
@@ -873,7 +917,7 @@ else if (date == 23) {
                 >
 
                 <LinearGradient
-                  colors={['#A6FFCB', '#12D8FA']}
+                  colors={['#008a00', 'white']}
                   style={{
                     position: 'absolute',
                     left: 0,
