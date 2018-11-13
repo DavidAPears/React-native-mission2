@@ -306,7 +306,7 @@ else if (date == 23) {
     if (!this.state.searchedLocation){
       Alert.alert(
  'Whoops...',
- 'Enter your wedding location'
+ 'Enter a golf course ⛳️'
 
 )
 }else{
@@ -778,7 +778,7 @@ else if (date == 23) {
         <TextInput
       style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19}}
       onChangeText={(searchedLocation) => {this.updateLocationState(searchedLocation)}}
-      value={this.state.searchedLocation} placeholder='Where? Place or postcode' placeholderTextColor='white'
+      value={this.state.searchedLocation} placeholder='Enter golf course name or postcode' placeholderTextColor='white'
       underlineColorAndroid='transparent'
     />
 
