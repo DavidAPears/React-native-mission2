@@ -14,6 +14,7 @@
     ]
   },
   "dependencies": {
+    "add": "^2.0.6",
     "axios": "^0.18.0",
     "expo": "^30.0.1",
     "expo-cli": "^2.1.3",
@@ -21,6 +22,7 @@
     "native-base": "^2.8.1",
     "node-fetch": "^2.2.1",
     "nodemon": "^1.18.5",
+    "or": "^0.2.0",
     "react": "16.3.1",
     "react-axios": "^2.0.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
@@ -36,6 +38,7 @@
     "react-native-indicators": "^0.13.0",
     "react-native-maps": "^0.22.0",
     "react-native-modal": "^6.5.0",
+    "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-modalbox": "^1.6.0",
     "react-native-pulse": "^1.0.6",
     "react-native-snap-carousel": "^3.7.5",
@@ -44,6 +47,7 @@
     "react-native-webview-leaflet": "^4.0.56",
     "suncalc": "^1.8.0",
     "tcomb-form-native": "^0.6.20",
-    "whatwg-fetch": "^2.0.4"
+    "whatwg-fetch": "^2.0.4",
+    "yarn": "^1.12.3"
   }
 }

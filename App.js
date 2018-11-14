@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { WebView, View, Linking, Text, Alert, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
 import {ImageBackground,  ActivityIndicator,} from 'react-native';
 import DatePicker from 'react-native-datepicker';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 import CircleSlider from 'react-native-circle-slider';
 import Modal from 'react-native-modal';
 import {Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
@@ -110,8 +111,11 @@ export default class App extends Component {
    icon: '',
    loadingInProcess: null,
    infoModalVisible: false,
-   hotels: null
+   hotels: null,
+   isDateTimePickerVisible: false,
  };
+
+
 
   // handleSubmit = () => {
   //   const value = this._form.getValue();
@@ -126,6 +130,21 @@ export default class App extends Component {
      this.setState({ fontLoaded: true });
      console.log("FONT LOADED", this.state.fontLoaded);
   }
+
+  DateTimePickerTester() {
+   state = {
+     isDateTimePickerVisible: true,
+   };
+
+   _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+
+   _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+
+   _handleDatePicked = (date) => {
+     console.log('A date has been picked: ', date);
+     this._hideDateTimePicker();
+   }
+ }
 
   convertSecondsToCalendarDate(){
     var fractionOfYear = this.state.dateSelected / 365;
@@ -660,15 +679,7 @@ else if (date == 23) {
      ) : null
    }
 
-   <View style={{paddingBottom: '10%', paddingLeft: 20, paddingRight: 20}}>
-   <TextInput
- style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19}}
- onChangeText={(searchedLocation) => {this.updateLocationState(searchedLocation)}}
- value={this.state.searchedLocation} placeholder='Where? Place or postcode' placeholderTextColor='white'
- underlineColorAndroid='transparent'
-/>
 
-   </View>
 
    <View style={{width: '100%', height: '50%', justifyContent: 'center', alignItems: 'center', overflow: 'visible'}}>
    <CircleSlider style={{}}
@@ -834,6 +845,19 @@ else if (date == 23) {
       underlineColorAndroid='transparent'
     />
 
+
+    <View style={{ flex: 1 }}>
+         <TouchableOpacity onPress={this._showDateTimePicker}>
+           <Text>Show DatePicker</Text>
+         </TouchableOpacity>
+         <DateTimePicker
+           isVisible={this.state.isDateTimePickerVisible}
+           onConfirm={this._handleDatePicked}
+           onCancel={this._hideDateTimePicker}
+           mode	=	'time'
+         />
+       </View>
+
         </View>
 
         <View style={{width: '100%', height: '50%', justifyContent: 'center', alignItems: 'center', overflow: 'visible'}}>
@@ -961,7 +985,7 @@ else if (date == 23) {
 
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/tee.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Temp at tee-off {this.state.weather.daily.data[0].apparentTemperature} °</Text>
+                     <Text style={styles.weatherItemText}>Temp at tee-off: {this.state.weather.daily.data[0].apparentTemperature} °</Text>
                      </View>
 
                      <View style={styles.weatherItem}>
