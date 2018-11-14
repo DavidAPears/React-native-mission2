@@ -917,7 +917,7 @@ else if (date == 23) {
                 >
 
                 <LinearGradient
-                  colors={['black', 'black']}
+                  colors={['#1a4517', '#98db94']}
                   style={{
                     position: 'absolute',
                     left: 0,
@@ -927,8 +927,6 @@ else if (date == 23) {
                     borderRadius: 15
                   }}
                 >
-
-
 
 
                   {/* Exit cross element begins here */}
@@ -952,29 +950,10 @@ else if (date == 23) {
 
                      <ScrollView>
 
+
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/icons/rain_chance.png')} style={{width: 75, height: 75}}/>
                      <Text style={styles.weatherItemText}> Chance of rain: { Math.round(this.getAveragePrecipitationProbability() * 100) }%</Text>
-                     </View>
-
-                     <View style={styles.weatherItem}>
-                     <Image source={require('./assets/icons/temperature.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Low: {this.fahrenheitToCelsius(this.getAverageLow())}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) } High: {this.fahrenheitToCelsius(this.getAverageHigh())}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
-                     </View>
-
-                     <View style={styles.weatherItemUV}>
-                     <Image source={require('./assets/icons/sunblock.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}> UV level: {this.getUVtext(this.getAverageUV())}</Text>
-                     </View>
-
-                     <View style={styles.weatherItem}>
-                     <Image source={require('./assets/icons/sunset.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) } Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
-                     </View>
-
-                     <View style={styles.weatherItem}>
-                     <Image source={require('./assets/icons/clouds.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Cloud cover: { this.getAverageCloudCover() * 100 }%</Text>
                      </View>
 
                      <View style={styles.weatherItem}>
@@ -985,6 +964,26 @@ else if (date == 23) {
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/icons/humidity.jpg')} style={{width: 75, height: 75}}/>
                      <Text style={styles.weatherItemText}>Humidity: { this.getAverageHumidity() * 100 }%</Text>
+                     </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/icons/temperature.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>Low: {this.fahrenheitToCelsius(this.getAverageLow())}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) } High: {this.fahrenheitToCelsius(this.getAverageHigh())}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
+                     </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/icons/clouds.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>Cloud cover: { this.getAverageCloudCover() * 100 }%</Text>
+                     </View>
+
+                     <View style={styles.weatherItemUV}>
+                     <Image source={require('./assets/icons/sunblock.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}> UV level: {this.getUVtext(this.getAverageUV())}</Text>
+                     </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/icons/sunset.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) } Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
                      </View>
 
                      <View style={styles.weatherItem}>
