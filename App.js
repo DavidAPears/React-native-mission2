@@ -636,7 +636,7 @@ else if (date == 23) {
       return (
 
         <ImageBackground
-                 source={require('./assets/golfcover.png')}
+                 source={require('./assets/coverimage2.jpg')}
                  style={styles.backgroundStyle}
                  >
 
@@ -803,7 +803,7 @@ else if (date == 23) {
     else {
           return (
       <ImageBackground
-               source={require('./assets/golfcover.png')}
+               source={require('./assets/coverimage2.jpg')}
                style={styles.backgroundStyle}
                >
 
@@ -874,7 +874,7 @@ else if (date == 23) {
       style={{borderWidth: 0, borderRadius: 10, justifyContent: 'center', alignItems: 'center'}}>
 
       <LinearGradient
-        colors={['#efc100', '#efc100']}
+        colors={['black', 'black']}
         style={{
           position: 'absolute',
           left: 0,
@@ -890,16 +890,16 @@ else if (date == 23) {
       </TouchableOpacity>
 
       <View style={{alignItems: "center"}}>
-       <Image source={require('./assets/Golf+Gif.gif')} style={{height: 100, width: 100}}/>
+       <Image source={require('./assets/golf.png')} style={{height: 100, width: 100}}/>
        </View>
 
         <ScrollView>
 
-      <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20, paddingRight: 20, paddingTop: 10}}>Weather2Golf; an app by <Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://github.com/jah1603')}>James Henderson</Text><Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://github.com/SFR1981')}>, Stephen Rooney</Text> &<Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://github.com/DavidAPears')}> David Pears.</Text></Text>
+      <Text style={{fontSize: 17, color: 'white', paddingLeft: 20, paddingRight: 20, paddingTop: 10}}>Weather2Golf - an app by <Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/jah1603')}>James Henderson</Text><Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/SFR1981')}>, Stephen Rooney</Text> &<Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/DavidAPears')}> David Pears.</Text> Weather2Golf is part of the Weather2 series (see also 'Weather2Wed')</Text>
 
-      <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', padding: 20}}>James, Stephen and David have also created the sister app 'Weather2Wed'. You can usualy find them in an Edinburgh cafe, trying to figure out <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://www.reactnative.com')}>ReactNative</Text></Text>
+      <Text style={{fontSize: 17, color: 'white', padding: 20}}>David, James & Stephen can usualy be found in an Edinburgh cafe, trying to figure out <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.reactnative.com')}>ReactNative</Text></Text>
 
-       <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20, paddingTop: 10, paddingRight: 20, paddingBottom: 10}}>Weather2Golf aims to help golfers assess the weather for trips to the course (any UK course). Powered by <Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://darksky.net/')}>Dark Sky</Text>, the app returns the typical weather (based on historical averages) for any given course. The app utilises <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://www.geograph.org.uk/')}>Geograph's API</Text> which means that any part of the UK can be entered as a search term (the fuzzy search can handle place names, postcodes, regions, sites of interest or even landmarks). Weather2Golf will also suggest nearby hotels in and around a course using the <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://developer.foursquare.com/places-api')}>FourSquare API</Text>. NB. There is no commercial benefit to us, the creators; this information is provided as a free service. </Text>
+       <Text style={{fontSize: 17, color: 'white', paddingLeft: 20, paddingTop: 10, paddingRight: 20, paddingBottom: 10}}>Weather2Golf aims to help golfers assess the weather for trips to the course (any UK course). Powered by <Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://darksky.net/')}>Dark Sky</Text>, the app returns the typical weather (based on historical averages) for any given course. The app utilises <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.geograph.org.uk/')}> Geograph's API</Text> which means that any part of the UK can be entered as a search term (the fuzzy search can handle place names, postcodes, regions, sites of interest or even landmarks). Weather2Golf will also suggest nearby hotels in and around a course using the <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://developer.foursquare.com/places-api')}>FourSquare API</Text>. NB. There is no commercial benefit to us, the creators; this information is provided as a free service. Icons on this app are from flaticon.com.</Text>
 
        <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20}}>Weather2Golf</Text>
        <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingBottom: 20, paddingLeft: 20}}>November 2018</Text>
@@ -917,7 +917,7 @@ else if (date == 23) {
                 >
 
                 <LinearGradient
-                  colors={['#008a00', 'white']}
+                  colors={['black', 'black']}
                   style={{
                     position: 'absolute',
                     left: 0,
