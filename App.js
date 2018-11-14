@@ -594,6 +594,10 @@ else if (date == 23) {
     return ((this.state.weather.daily.data[0].windSpeed + this.state.second_year_weather.daily.data[0].windSpeed) / 2).toFixed(1)
   }
 
+  getAverageWindGust(){
+    return ((this.state.weather.daily.data[0].windGust + this.state.second_year_weather.daily.data[0].windGust) / 2).toFixed(1)
+  }
+
   getAveragePrecipitationProbability(){
     return ((this.state.weather.daily.data[0].precipProbability + this.state.second_year_weather.daily.data[0].precipProbability) / 2).toFixed(0)
   }
@@ -954,6 +958,11 @@ else if (date == 23) {
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/icons/rain_chance.png')} style={{width: 75, height: 75}}/>
                      <Text style={styles.weatherItemText}> Chance of rain: { Math.round(this.getAveragePrecipitationProbability() * 100) }%</Text>
+                     </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/windgust.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>Wind Gust: {this.getAverageWindGust()} mph</Text>
                      </View>
 
                      <View style={styles.weatherItem}>
