@@ -621,6 +621,10 @@ else if (date == 23) {
     return ((this.state.weather.daily.data[0].windBearing + this.state.second_year_weather.daily.data[0].windBearing) / 2).toFixed(1)
   }
 
+  getAverageVisibility(){
+    return ((this.state.weather.daily.data[0].visibility + this.state.second_year_weather.daily.data[0].visibility) / 2).toFixed(1)
+  }
+
   getAveragePrecipitationProbability(){
     return ((this.state.weather.daily.data[0].precipProbability + this.state.second_year_weather.daily.data[0].precipProbability) / 2).toFixed(0)
   }
@@ -1006,6 +1010,11 @@ else if (date == 23) {
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/wind-bearing.png')} style={{width: 75, height: 75}}/>
                      <Text style={styles.weatherItemText}>Wind Bearing: {this.getAverageWindBearing()}°</Text>
+                     </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/visibility.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>Visibility: {this.getAverageVisibility()}km's</Text>
                      </View>
 
                      <View style={styles.weatherItem}>
