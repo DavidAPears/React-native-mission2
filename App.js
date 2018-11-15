@@ -112,7 +112,7 @@ export default class App extends Component {
    loadingInProcess: null,
    infoModalVisible: false,
    hotels: null,
-   isDateTimePickerVisible: false,
+   isDateTimePickerVisible: true,
  };
 
 
@@ -922,7 +922,7 @@ else if (date == 23) {
       </TouchableOpacity>
 
       <View style={{alignItems: "center"}}>
-       <Image source={require('./assets/golf.png')} style={{height: 100, width: 100}}/>
+       <Image source={require('./assets/weather-clip-animated-3.gif')} style={{height: 150, width: 150}}/>
        </View>
 
         <ScrollView>
