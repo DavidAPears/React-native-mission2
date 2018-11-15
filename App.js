@@ -986,10 +986,14 @@ else if (date == 23) {
 
                      <ScrollView>
 
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/weatherstation.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>Nearest Weather Station: {this.state.weather.flags.neareststation} miles</Text>
+                     </View>
 
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/tee.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Temp at tee-off: {this.state.weather.daily.data[0].apparentTemperature} °</Text>
+                     <Text style={styles.weatherItemText}>Tee-off conditions: {this.state.weather.daily.data[0].apparentTemperature} °</Text>
                      </View>
 
                      <View style={styles.weatherItem}>
@@ -1014,7 +1018,7 @@ else if (date == 23) {
 
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/visibility.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Visibility: {this.getAverageVisibility()}km's</Text>
+                     <Text style={styles.weatherItemText}>Visibility: {this.getAverageVisibility()} miles</Text>
                      </View>
 
                      <View style={styles.weatherItem}>
