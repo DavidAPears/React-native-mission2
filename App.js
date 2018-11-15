@@ -325,7 +325,7 @@ else if (date == 23) {
     if (!this.state.searchedLocation){
       Alert.alert(
  'Whoops...',
- 'Enter a golf course ⛳️'
+ 'Enter golf course name (i.e. "St Andrews") ⛳️'
 
 )
 }else{
