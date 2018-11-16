@@ -95,6 +95,7 @@ export default class App extends Component {
   this.processSubmit = this.processSubmit.bind(this);
   this.toggleModal = this.toggleModal.bind(this);
   this.toggleInfoModal = this.toggleInfoModal.bind(this);
+  this.toggleHourlyModal = this.toggleHourlyModal.bind(this);
   this.getWeatherData = this.getWeatherData.bind(this);
   this.getCoordinates = this.getCoordinates.bind(this);
 }
@@ -111,7 +112,8 @@ export default class App extends Component {
    icon: '',
    loadingInProcess: null,
    infoModalVisible: false,
-   hotels: null
+   hotels: null,
+   hourlyModalVisible: false
  };
 
 
@@ -328,6 +330,12 @@ else {
       console.log("INFO MODAL VISIBLE", this.state.infoModalVisible);
 
       this.setState({ infoModalVisible: !this.state.infoModalVisible })
+
+    }
+
+    toggleHourlyModal(){
+
+      this.setState({ hourlyModalVisible: !this.state.hourlyModalVisible })
 
     }
 
@@ -934,6 +942,47 @@ else {
        </LinearGradient>
       </Modal>
 
+      <Modal  isVisible={this.state.hourlyModalVisible}
+      style={{borderWidth: 0, borderRadius: 10, justifyContent: 'center', alignItems: 'center'}}>
+
+      <LinearGradient
+        colors={['black', 'black']}
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 0,
+          height: '100%',
+          borderRadius: 10
+        }}
+      >
+
+      <TouchableOpacity onPress={this.toggleHourlyModal} style={{ height: 32}}>
+        <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, marginTop: 10, position: 'relative', left:'91%'}}/>
+      </TouchableOpacity>
+
+      <View style={{alignItems: "center"}}>
+       <Image source={require('./assets/weather-clip-animated-3.gif')} style={{height: 150, width: 150}}/>
+       </View>
+
+        <ScrollView>
+
+      <Text style={{fontSize: 17, color: 'white', paddingLeft: 20, paddingRight: 20, paddingTop: 10}}>Weather2Golf - an app by <Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/jah1603')}>James Henderson</Text><Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/SFR1981')}>, Stephen Rooney</Text> &<Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/DavidAPears')}> David Pears.</Text> Weather2Golf is part of the Weather2 series (see also 'Weather2Wed')</Text>
+
+      <Text style={{fontSize: 17, color: 'white', padding: 20}}>David, James & Stephen can usually be found in an Edinburgh cafe, trying to figure out <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.reactnative.com')}>ReactNative.</Text></Text>
+
+       <Text style={{fontSize: 17, color: 'white', paddingLeft: 20, paddingTop: 10, paddingRight: 20, paddingBottom: 10}}>Weather2Golf aims to help golfers assess the weather for trips to the course (any UK course). Powered by <Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://darksky.net/')}>Dark Sky</Text>, the app returns the typical weather (based on historical averages) for any given course. The app utilises<Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.geograph.org.uk/')}> Geograph's API</Text> which means that any part of the UK can be entered as a search term (the fuzzy search can handle place names, postcodes, regions, sites of interest or even landmarks). Weather2Golf will also suggest nearby hotels in and around a course using the <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://developer.foursquare.com/places-api')}>FourSquare API</Text>. NB. There is no commercial benefit to us, the creators; this information is provided as a free service. Icons on this app are from flaticon.com.</Text>
+
+       <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20}}>Weather2Golf</Text>
+       <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingBottom: 20, paddingLeft: 20}}>November 2018</Text>
+
+       </ScrollView>
+       </LinearGradient>
+      </Modal>
+
+
+
+
           {
             this.state.weather ? (
 
@@ -978,7 +1027,19 @@ else {
 
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/tee.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Tee-off conditions: {this.state.weather.daily.data[0].apparentTemperature} °</Text>
+
+                     <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
+
+                     <Text style={styles.weatherItemText}>Tee-off conditions: </Text>
+                     <Button
+                     style={{width: 60, borderRadius: 10}}
+                     onPress={this.toggleInfoModal}
+                     title="View hourly"
+                     color="green"
+                     />
+
+                     </View>
+
                      </View>
 
                      <View style={styles.weatherItem}>
