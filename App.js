@@ -660,12 +660,12 @@ else {
 
   hourlyWeatherMapping(){
 
-    var hours = ["06:00h ", ":07:00h", "08:00h", "09:00h", "10:00h", "11:00h", "12:00h", "13:00h", "14:00h", "15:00h", "16:00h", "17:00h", "18:00h", "19:00h", "20:00h", "21:00h"]
+    var hours = ["06:00h ", "07:00h", "08:00h", "09:00h", "10:00h", "11:00h", "12:00h", "13:00h", "14:00h", "15:00h", "16:00h", "17:00h", "18:00h", "19:00h", "20:00h", "21:00h"]
 
     return hours.map((hour, index) =>
-    <View style={styles.weatherItem}>
+    <View style={styles.weatherItem} key={((new Date).getTime() + Math.random())}>
     <Image source={require('./assets/bullet-vector-point-symbol.png')} style={{width: 25, height: 25}}/>
-    <Text style={styles.weatherItemText}> hour {this.state.weather.hourly.data[index+6].summary} </Text>
+    <Text style={styles.weatherItemText} key={((new Date).getTime() + Math.random())}> {hours[index]} "{this.state.weather.hourly.data[index+6].summary}". Tempearature: {this.fahrenheitToCelsius(this.state.weather.hourly.data[index+6].temperature)}°C, with a wind-speed of {this.state.weather.hourly.data[index+6].windSpeed} mph </Text>
     </View>
     )
 
