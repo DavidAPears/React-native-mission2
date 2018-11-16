@@ -661,6 +661,8 @@ else if (date == 23) {
   render() {
     var self = this;
 
+    const nearest_station = 'nearest-station';
+
 
 
     if (self.state.loadingInProcess === true){
@@ -987,11 +989,6 @@ else if (date == 23) {
                      <ScrollView>
 
                      <View style={styles.weatherItem}>
-                     <Image source={require('./assets/weatherstation.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Nearest Weather Station: {this.state.weather.flags.neareststation} miles</Text>
-                     </View>
-
-                     <View style={styles.weatherItem}>
                      <Image source={require('./assets/tee.png')} style={{width: 75, height: 75}}/>
                      <Text style={styles.weatherItemText}>Tee-off conditions: {this.state.weather.daily.data[0].apparentTemperature} °</Text>
                      </View>
@@ -1046,7 +1043,10 @@ else if (date == 23) {
                      <Text style={styles.weatherItemText}>Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) } Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
                      </View>
 
-
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/weatherstation.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>Nearest weather station: {this.state.weather.flags[`${nearest_station}`]} miles from "{this.state.searchedLocation}"</Text>
+                     </View>
 
                       <View style={{height: 500, width: '90%', borderRadius: 15, overflow: 'hidden',
                         marginLeft: '5%'}}>
