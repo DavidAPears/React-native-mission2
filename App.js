@@ -665,7 +665,7 @@ else {
     return hours.map((hour, index) =>
     <View style={styles.weatherItem} key={((new Date).getTime() + Math.random())}>
     <Image source={require('./assets/bullet-vector-point-symbol.png')} style={{width: 25, height: 25}}/>
-    <Text style={styles.weatherItemText} key={((new Date).getTime() + Math.random())}> {hours[index]} "{this.state.weather.hourly.data[index+6].summary}". Tempearature: {this.fahrenheitToCelsius(this.state.weather.hourly.data[index+6].temperature)}°C, with a wind-speed of {this.state.weather.hourly.data[index+6].windSpeed} mph </Text>
+    <Text style={styles.weatherItemText} key={((new Date).getTime() + Math.random())}> {hours[index]} - "{this.state.weather.hourly.data[index+6].summary}", {this.fahrenheitToCelsius(this.state.weather.hourly.data[index+6].temperature)}°C, with a wind-speed of {this.state.weather.hourly.data[index+6].windSpeed} mph </Text>
     </View>
     )
 
