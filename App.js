@@ -658,6 +658,19 @@ else {
       }
   }
 
+  hourlyWeatherMapping(){
+
+    var hours = ["06:00h ", ":07:00h", "08:00h", "09:00h", "10:00h", "11:00h", "12:00h", "13:00h", "14:00h", "15:00h", "16:00h", "17:00h", "18:00h", "19:00h", "20:00h", "21:00h"]
+
+    return hours.map((hour, index) =>
+    <View style={styles.weatherItem}>
+    <Image source={require('./assets/bullet-vector-point-symbol.png')} style={{width: 25, height: 25}}/>
+    <Text style={styles.weatherItemText}> hour {this.state.weather.hourly.data[index+6].summary} </Text>
+    </View>
+    )
+
+
+  }
   render() {
     var self = this;
 
@@ -945,7 +958,7 @@ else {
       style={{borderWidth: 0, borderRadius: 10, justifyContent: 'center', alignItems: 'center'}}>
 
       <LinearGradient
-        colors={['black', 'black']}
+        colors={['#e8c10d', '#e8c10d']}
         style={{
           position: 'absolute',
           left: 0,
@@ -961,26 +974,15 @@ else {
       </TouchableOpacity>
 
       <View style={{alignItems: "center"}}>
-       <Image source={require('./assets/Golf+Gif.gif')} style={{height: 150, width: 150}}/>
+       <Image source={require('./assets/Golf+Gif.gif')} style={{height: 100, width: 100}}/>
        </View>
 
         <ScrollView>
 
 
-            <View style={styles.weatherItem}>
-            <Image source={require('./assets/windgust.png')} style={{width: 75, height: 75}}/>
-            <Text style={styles.weatherItemText}>Wind Gust: {this.getAverageWindGust()} mph</Text>
-            </View>
+          {self.hourlyWeatherMapping()}
 
-            <View style={styles.weatherItem}>
-            <Image source={require('./assets/wind-bearing.png')} style={{width: 75, height: 75}}/>
-            <Text style={styles.weatherItemText}>Wind Bearing: {this.getAverageWindBearing()}°</Text>
-            </View>
 
-            <View style={styles.weatherItem}>
-            <Image source={require('./assets/visibility.png')} style={{width: 75, height: 75}}/>
-            <Text style={styles.weatherItemText}>Visibility: {this.getAverageVisibility()} miles</Text>
-            </View>
 
        </ScrollView>
        </LinearGradient>
