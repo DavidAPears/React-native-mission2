@@ -560,7 +560,7 @@ else {
 
   timeConverterToHours = function (UNIX_timestamp) {
 
-  var a = new Date((UNIX_timestamp + 18000) * 1000);
+  var a = new Date((UNIX_timestamp) * 1000);
 
   console.log("a", a);
 
@@ -1042,13 +1042,16 @@ else {
 
                      <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
 
-                     <Text style={styles.weatherItemText}>Tee-off conditions: </Text>
+                     <Text style={styles.weatherItemText}>Tee-off conditions </Text>
+
+                    <View style={{alignItems: 'center'}}>
                      <Button
-                     style={{width: 60, borderRadius: 10}}
+                     style={{width: "50%", borderRadius: 15}}
                      onPress={this.toggleHourlyModal}
                      title="View hourly"
-                     color="green"
+                     color="#12D8FA"
                      />
+                     </View>
 
                      </View>
 
