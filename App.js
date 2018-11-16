@@ -100,7 +100,6 @@ export default class App extends Component {
   this.getCoordinates = this.getCoordinates.bind(this);
 }
 
-
   state = {
    fontLoaded: false,
    dateSelected: null,
@@ -664,8 +663,6 @@ else {
 
     const nearest_station = 'nearest-station';
 
-
-
     if (self.state.loadingInProcess === true){
       return (
 
@@ -932,7 +929,6 @@ else {
       <Text style={{fontSize: 17, color: 'white', paddingLeft: 20, paddingRight: 20, paddingTop: 10}}>Weather2Golf - an app by <Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/jah1603')}>James Henderson</Text><Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/SFR1981')}>, Stephen Rooney</Text> &<Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/DavidAPears')}> David Pears.</Text> Weather2Golf is part of the Weather2 series (see also 'Weather2Wed')</Text>
 
       <Text style={{fontSize: 17, color: 'white', padding: 20}}>David, James & Stephen can usually be found in an Edinburgh cafe, trying to figure out <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.reactnative.com')}>ReactNative.</Text></Text>
-
        <Text style={{fontSize: 17, color: 'white', paddingLeft: 20, paddingTop: 10, paddingRight: 20, paddingBottom: 10}}>Weather2Golf aims to help golfers assess the weather for trips to the course (any UK course). Powered by <Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://darksky.net/')}>Dark Sky</Text>, the app returns the typical weather (based on historical averages) for any given course. The app utilises<Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.geograph.org.uk/')}> Geograph's API</Text> which means that any part of the UK can be entered as a search term (the fuzzy search can handle place names, postcodes, regions, sites of interest or even landmarks). Weather2Golf will also suggest nearby hotels in and around a course using the <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://developer.foursquare.com/places-api')}>FourSquare API</Text>. NB. There is no commercial benefit to us, the creators; this information is provided as a free service. Icons on this app are from flaticon.com.</Text>
 
        <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20}}>Weather2Golf</Text>
@@ -941,6 +937,9 @@ else {
        </ScrollView>
        </LinearGradient>
       </Modal>
+
+      {
+        this.state.weather ? (
 
       <Modal  isVisible={this.state.hourlyModalVisible}
       style={{borderWidth: 0, borderRadius: 10, justifyContent: 'center', alignItems: 'center'}}>
@@ -962,26 +961,37 @@ else {
       </TouchableOpacity>
 
       <View style={{alignItems: "center"}}>
-       <Image source={require('./assets/weather-clip-animated-3.gif')} style={{height: 150, width: 150}}/>
+       <Image source={require('./assets/Golf+Gif.gif')} style={{height: 150, width: 150}}/>
        </View>
 
         <ScrollView>
 
-      <Text style={{fontSize: 17, color: 'white', paddingLeft: 20, paddingRight: 20, paddingTop: 10}}>Weather2Golf - an app by <Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/jah1603')}>James Henderson</Text><Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/SFR1981')}>, Stephen Rooney</Text> &<Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/DavidAPears')}> David Pears.</Text> Weather2Golf is part of the Weather2 series (see also 'Weather2Wed')</Text>
 
-      <Text style={{fontSize: 17, color: 'white', padding: 20}}>David, James & Stephen can usually be found in an Edinburgh cafe, trying to figure out <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.reactnative.com')}>ReactNative.</Text></Text>
+            <View style={styles.weatherItem}>
+            <Image source={require('./assets/windgust.png')} style={{width: 75, height: 75}}/>
+            <Text style={styles.weatherItemText}>Wind Gust: {this.getAverageWindGust()} mph</Text>
+            </View>
 
-       <Text style={{fontSize: 17, color: 'white', paddingLeft: 20, paddingTop: 10, paddingRight: 20, paddingBottom: 10}}>Weather2Golf aims to help golfers assess the weather for trips to the course (any UK course). Powered by <Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://darksky.net/')}>Dark Sky</Text>, the app returns the typical weather (based on historical averages) for any given course. The app utilises<Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.geograph.org.uk/')}> Geograph's API</Text> which means that any part of the UK can be entered as a search term (the fuzzy search can handle place names, postcodes, regions, sites of interest or even landmarks). Weather2Golf will also suggest nearby hotels in and around a course using the <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://developer.foursquare.com/places-api')}>FourSquare API</Text>. NB. There is no commercial benefit to us, the creators; this information is provided as a free service. Icons on this app are from flaticon.com.</Text>
+            <View style={styles.weatherItem}>
+            <Image source={require('./assets/wind-bearing.png')} style={{width: 75, height: 75}}/>
+            <Text style={styles.weatherItemText}>Wind Bearing: {this.getAverageWindBearing()}°</Text>
+            </View>
 
-       <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20}}>Weather2Golf</Text>
-       <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingBottom: 20, paddingLeft: 20}}>November 2018</Text>
+            <View style={styles.weatherItem}>
+            <Image source={require('./assets/visibility.png')} style={{width: 75, height: 75}}/>
+            <Text style={styles.weatherItemText}>Visibility: {this.getAverageVisibility()} miles</Text>
+            </View>
 
        </ScrollView>
        </LinearGradient>
       </Modal>
 
+    )
+    :
 
-
+    <View>
+    </View>
+  }
 
           {
             this.state.weather ? (
@@ -1033,7 +1043,7 @@ else {
                      <Text style={styles.weatherItemText}>Tee-off conditions: </Text>
                      <Button
                      style={{width: 60, borderRadius: 10}}
-                     onPress={this.toggleInfoModal}
+                     onPress={this.toggleHourlyModal}
                      title="View hourly"
                      color="green"
                      />
