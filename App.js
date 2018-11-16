@@ -111,8 +111,7 @@ export default class App extends Component {
    icon: '',
    loadingInProcess: null,
    infoModalVisible: false,
-   hotels: null,
-   isDateTimePickerVisible: true,
+   hotels: null
  };
 
 
@@ -130,21 +129,6 @@ export default class App extends Component {
      this.setState({ fontLoaded: true });
      console.log("FONT LOADED", this.state.fontLoaded);
   }
-
-  DateTimePickerTester() {
-   state = {
-     isDateTimePickerVisible: true,
-   };
-
-   _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
-
-   _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
-
-   _handleDatePicked = (date) => {
-     console.log('A date has been picked: ', date);
-     this._hideDateTimePicker();
-   }
- }
 
   convertSecondsToCalendarDate(){
     var fractionOfYear = this.state.dateSelected / 365;
@@ -272,47 +256,47 @@ else if (date == 23) {
   return moonPhaseName;
 };
 
-  convertSecondsToCalendarDateForOutputText(){
-    var fractionOfYear = this.state.dateSelected / 365;
-    var secondsInAYear = 31536000;
-    var seconds = fractionOfYear * secondsInAYear;
+convertSecondsToCalendarDateForOutputText(){
+  var fractionOfYear = this.state.dateSelected / 365;
+  var secondsInAYear = 31536000;
+  var seconds = fractionOfYear * secondsInAYear;
 
-    var dateToDisplay = new Date(seconds * 1000);
-    var months = ['January','Febuary','March','April','May','June','July','August','September','October','November','December'];
-    var month = months[dateToDisplay.getMonth()];
-    var date = dateToDisplay.getDate();
+  var dateToDisplay = new Date(seconds * 1000);
+  var months = ['January','Febuary','March','April','May','June','July','August','September','October','November','December'];
+  var month = months[dateToDisplay.getMonth()];
+  var date = dateToDisplay.getDate();
 
-    if (date == 3) {
-   var formattedDate = `${date}rd`
+  if (date == 3) {
+ var formattedDate = `${date}rd`
 } else if (date == 2) {
-   var formattedDate = `${date}nd`
+ var formattedDate = `${date}nd`
 }
 else if (date == 1) {
-   var formattedDate = `${date}st`
+ var formattedDate = `${date}st`
 }
 else if (date == 21) {
-   var formattedDate = `${date}st`
+ var formattedDate = `${date}st`
 }
 else if (date == 31) {
-   var formattedDate = `${date}st`
+ var formattedDate = `${date}st`
 }
 else if (date == 22) {
-   var formattedDate = `${date}nd`
+ var formattedDate = `${date}nd`
 }
 else if (date == 23) {
-   var formattedDate = `${date}rd`
+ var formattedDate = `${date}rd`
 }
- else {
-   var formattedDate = `${date}th`
+else {
+ var formattedDate = `${date}th`
 }
 
-    if (!this.state.dateSelected){
-      return '1st January';
-    }
-    else {
-      return `${formattedDate} ${month}`;
-    }
+  if (!this.state.dateSelected === 0){
+    return '1st January';
   }
+  else {
+    return `${formattedDate} ${month}`;
+  }
+}
 
   getVal(val) {
         console.warn(val);
@@ -325,7 +309,7 @@ else if (date == 23) {
     if (!this.state.searchedLocation){
       Alert.alert(
  'Whoops...',
- 'Enter golf course name (i.e. "St Andrews") ⛳️'
+ 'Enter a golf course name (i.e. "St Andrews" or "Royal Dornoch") ⛳️'
 
 )
 }else{
@@ -444,7 +428,7 @@ else if (date == 23) {
       console.log("Error fetching coordinates data.");
       Alert.alert(
  'Could not find weather for your location',
- "Try to be more specific e.g. type 'Bath Somerset' rather than 'Bath' or 'Bangor Wales' instead of 'Bangor'."
+  'Enter a golf course name (i.e. "St Andrews" or "Royal Dornoch") ⛳️'
 )
   self.setState({
     loadingInProcess: false
@@ -626,6 +610,15 @@ else if (date == 23) {
   }
 
   getAveragePrecipitationProbability(){
+
+    if (!this.state.weather.daily.data[0].precipProbability){
+       this.state.weather.daily.data[0].precipProbability = 0;
+    }
+
+    if (!this.state.second_year_weather.daily.data[0].precipProbability){
+       this.state.second_year_weather.daily.data[0].precipProbability = 0;
+    }
+
     return ((this.state.weather.daily.data[0].precipProbability + this.state.second_year_weather.daily.data[0].precipProbability) / 2).toFixed(0)
   }
 
@@ -685,7 +678,15 @@ else if (date == 23) {
      ) : null
    }
 
+   <View style={{paddingBottom: '10%', paddingLeft: 20, paddingRight: 20}}>
+   <TextInput
+ style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19}}
+ onChangeText={(searchedLocation) => {this.updateLocationState(searchedLocation)}}
+ value={this.state.searchedLocation} placeholder='Which golf course?' placeholderTextColor='white'
+ underlineColorAndroid='transparent'
+/>
 
+</View>
 
    <View style={{width: '100%', height: '50%', justifyContent: 'center', alignItems: 'center', overflow: 'visible'}}>
    <CircleSlider style={{}}
@@ -847,22 +848,9 @@ else if (date == 23) {
         <TextInput
       style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19}}
       onChangeText={(searchedLocation) => {this.updateLocationState(searchedLocation)}}
-      value={this.state.searchedLocation} placeholder='Enter golf course name or postcode' placeholderTextColor='white'
+      value={this.state.searchedLocation} placeholder='Which golf course?' placeholderTextColor='white'
       underlineColorAndroid='transparent'
     />
-
-
-    <View style={{ flex: 1 }}>
-         <TouchableOpacity onPress={this._showDateTimePicker}>
-           <Text>Show DatePicker</Text>
-         </TouchableOpacity>
-         <DateTimePicker
-           isVisible={this.state.isDateTimePickerVisible}
-           onConfirm={this._handleDatePicked}
-           onCancel={this._hideDateTimePicker}
-           mode	=	'time'
-         />
-       </View>
 
         </View>
 
@@ -935,9 +923,9 @@ else if (date == 23) {
 
       <Text style={{fontSize: 17, color: 'white', paddingLeft: 20, paddingRight: 20, paddingTop: 10}}>Weather2Golf - an app by <Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/jah1603')}>James Henderson</Text><Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/SFR1981')}>, Stephen Rooney</Text> &<Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://github.com/DavidAPears')}> David Pears.</Text> Weather2Golf is part of the Weather2 series (see also 'Weather2Wed')</Text>
 
-      <Text style={{fontSize: 17, color: 'white', padding: 20}}>David, James & Stephen can usualy be found in an Edinburgh cafe, trying to figure out <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.reactnative.com')}>ReactNative</Text></Text>
+      <Text style={{fontSize: 17, color: 'white', padding: 20}}>David, James & Stephen can usually be found in an Edinburgh cafe, trying to figure out <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.reactnative.com')}>ReactNative.</Text></Text>
 
-       <Text style={{fontSize: 17, color: 'white', paddingLeft: 20, paddingTop: 10, paddingRight: 20, paddingBottom: 10}}>Weather2Golf aims to help golfers assess the weather for trips to the course (any UK course). Powered by <Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://darksky.net/')}>Dark Sky</Text>, the app returns the typical weather (based on historical averages) for any given course. The app utilises <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.geograph.org.uk/')}> Geograph's API</Text> which means that any part of the UK can be entered as a search term (the fuzzy search can handle place names, postcodes, regions, sites of interest or even landmarks). Weather2Golf will also suggest nearby hotels in and around a course using the <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://developer.foursquare.com/places-api')}>FourSquare API</Text>. NB. There is no commercial benefit to us, the creators; this information is provided as a free service. Icons on this app are from flaticon.com.</Text>
+       <Text style={{fontSize: 17, color: 'white', paddingLeft: 20, paddingTop: 10, paddingRight: 20, paddingBottom: 10}}>Weather2Golf aims to help golfers assess the weather for trips to the course (any UK course). Powered by <Text style={{fontSize: 17, color: '#52c24b'}} onPress={()=>Linking.openURL('https://darksky.net/')}>Dark Sky</Text>, the app returns the typical weather (based on historical averages) for any given course. The app utilises<Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://www.geograph.org.uk/')}> Geograph's API</Text> which means that any part of the UK can be entered as a search term (the fuzzy search can handle place names, postcodes, regions, sites of interest or even landmarks). Weather2Golf will also suggest nearby hotels in and around a course using the <Text style={{fontSize: 18, color: '#52c24b'}} onPress={()=>Linking.openURL('https://developer.foursquare.com/places-api')}>FourSquare API</Text>. NB. There is no commercial benefit to us, the creators; this information is provided as a free service. Icons on this app are from flaticon.com.</Text>
 
        <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20}}>Weather2Golf</Text>
        <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingBottom: 20, paddingLeft: 20}}>November 2018</Text>
