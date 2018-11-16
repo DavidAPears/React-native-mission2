@@ -1177,6 +1177,7 @@ const styles = StyleSheet.create({
   weatherHeadingSummaryText: {
     flexWrap: 'wrap',
     paddingLeft: 15,
+    paddingRight: 15,
     fontSize: 18,
     marginBottom: 0,
     paddingBottom: 7,
