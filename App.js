@@ -1,4 +1,4 @@
-console.disableYellowBox = trueimport React, { Component } from 'react';
+React, { Component } from 'react';
 import { WebView, View, Linking, Text, Alert, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
 import {ImageBackground,  ActivityIndicator,} from 'react-native';
 import DatePicker from 'react-native-datepicker';
