@@ -26,7 +26,7 @@
     },
     "android": {
      "package": "com.weather2.weather2golf",
-     "versionCode": 2.0
+     "versionCode": 3.0
    }
   }
 }
